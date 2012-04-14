@@ -1,3 +1,5 @@
+var myLocationMarker;
+
 function onLocationKeyPress(event)
 {	
 	var charCode = event.charCode;
@@ -26,17 +28,20 @@ function updateLocation(location)
 	geocoder.geocode(requestData, geocodeResultHandler);
 }
 
-var myLocationMarker;
-
 function geocodeResultHandler(r, status)
 {
-	console.info("geocode complete: " + r[0]);
-	map.setCenter(r[0].geometry.location);
+	console.info("Geocode complete. Status: " + status);
 	
-	if (!myLocationMarker)
+	if (status == google.maps.GeocoderStatus.OK)
 	{
-		myLocationMarker = new google.maps.Marker({map: map});
+		var coordinate = r[0].geometry.location;
+		if (!myLocationMarker) {
+			myLocationMarker = new google.maps.Marker({
+				map: map
+			});
+		}
+		
+		myLocationMarker.setPosition(coordinate);
+		map.setCenter(coordinate);
 	}
-	
-	myLocationMarker.setPosition(r[0].geometry.location);
 }
