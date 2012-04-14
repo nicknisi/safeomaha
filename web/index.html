@@ -11,6 +11,7 @@
         <script data-dojo-config="async:1,tmlSiblingsOfDojo:0,isDebug:1" src="js/dojo/dojo/dojo.js"></script>
         <script src="js/run.js"></script>
         <script type="text/javascript" src="./js/map.js"></script>
+		<script type="text/javascript" src="./js/location.js"></script>
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <style type="text/css">
@@ -51,7 +52,7 @@
           </div>
 
           <div id="navbar"><!--Begin navbar-->
-            <input type="text" placeholder="Location" />
+            <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
             <div id="divider"></div>
             <h3>Personalize the map based on your risk tolerance.</h3>
             <div id="divider"></div>
