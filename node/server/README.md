@@ -14,10 +14,15 @@ Safe omaha node server
 
 ##Import Data
 
+```
   ./bin/import ../parser/data/post_process/dataset.json
+```
 
 ## Start Server
 
+```
   ./bin/start-server host? port?
+```
 
+To change default host, port, or mongodb url edit config.json.
 
