@@ -19,9 +19,14 @@ function initialize() {
 			
 			if (markerImages[dataSet[i].type])
 				markers[i].setIcon(markerImages[dataSet[i].type]);
-			else
 			
 			console.log('test ' + markers[i].getTitle());
+
+			google.maps.event.addListener(markers[i], 'click', (function(marker) { 
+				return function () {
+					alert("I am marker " + marker.getTitle());
+				};
+			})(markers[i]));
 			
 		}
 
