@@ -1,6 +1,8 @@
 <html>
 <head>
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAhiuMJP7gGVb9VKZntwgnQhR2S2Q_ud24Mye7Rb78utZ6az3eTSDFLKJWEROIBNSDF"></script>
+    <script type="text/javascript"
+      src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyDnVDrLNVrXeYMO751qyzSzxH1tEk8pjVM">
+    </script>
     <script>
 
         bounds = new GLatLngBounds( new GLatLng(-90, -180)
@@ -16,8 +18,8 @@
         copyrights.addCopyright(copyright);
         heatmap = new GTileLayer(copyrights, 10, 0);
         heatmap.getTileUrl = function (tile, zoom) {
-            base = 'http://localhost/';
-            map_name = 'crimes';
+            base = 'http://localhost/heatmap';
+            map_name = 'testit';
             color_scheme = 'classic';
             url = base +'/'+ map_name +'/'+ color_scheme +'/'+ zoom +'/'
             url += tile.x +','+ tile.y +'.png';
