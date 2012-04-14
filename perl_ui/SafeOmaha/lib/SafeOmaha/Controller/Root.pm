@@ -66,7 +66,8 @@ sub add_points_js :Private {
       var markers = new Array();
       for (var i = 0; i < $item_cnt; i++) {
 EOT
-   foreach my $item (@items) {
+   my $points_js;
+   foreach my $item (@{$json->{response}->{checkins}->{items}}) {
       my $name = $item->{venue}->{name};
       $name =~ s/'/\\'/g;
       my $lat =  $item->{venue}->{location}->{lat};
