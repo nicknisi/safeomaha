@@ -3,28 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <title>Google Maps JavaScript API Example: Map Markers</title>
-    <script src="//maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyD4iE2xVSpkLLOXoyqT-RuPwURN3ddScAI"
-            type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
     <script type="text/javascript">
     
     function initialize() {
-      if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
- 
-        // Add 10 markers to the map at random locations
-        var bounds = map.getBounds();
-        var southWest = bounds.getSouthWest();
-        var northEast = bounds.getNorthEast();
-        var lngSpan = northEast.lng() - southWest.lng();
-        var latSpan = northEast.lat() - southWest.lat();
+        var myOptions = {
+           center: new google.maps.LatLng(41.25917,-95.93386),
+           zoom: 12,
+           mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        //map.setCenter(new GLatLng(41.252363, -95.997988), 13);
         [% c.stash.points_js %]
       }
-    }
 
     </script>
   </head>
   <body onload="initialize()" onunload="GUnload()">
-    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+     <div id="map_canvas" style="width:800px;height:500px;"></div>
   </body>
 </html>

@@ -1,8 +1,14 @@
 package SafeOmaha::Controller::Root;
 use Moose;
 use namespace::autoclean;
+use JSON::XS;
 
 BEGIN { extends 'Catalyst::Controller' }
+
+my $file = "../../foursquare/example_checkins.json";
+open my $in, '<', $file or die "Can't open '$file'";
+local $/;
+my $json = decode_json(<$in>);
 
 #
 # Sets the actions in this controller to be registered with no prefix
@@ -27,7 +33,8 @@ The root page (/)
 =cut
 
 sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+   my ( $self, $c ) = @_;
+   $self->add_points_js($c);
 }
 
 =head2 default
@@ -52,14 +59,19 @@ sub end : ActionClass('RenderView') {}
 
 sub add_points_js :Private {
    my ($self, $c) = @_;
-   $c->log->debug("HI!");
-   my $points_js = <<EOT;
-      for (var i = 0; i < 10; i++) {
-         var point = new GLatLng(southWest.lat() + latSpan * Math.random(),
-                                 southWest.lng() + lngSpan * Math.random());
-          map.addOverlay(new GMarker(point));
-        }
+   my $points_js;
+   foreach my $item (@{$json->{response}->{checkins}->{items}}) {
+      my $lat = $item->{venue}->{location}->{lat};
+      my $lng = $item->{venue}->{location}->{lng};
+      $points_js .= <<EOT;
+         new google.maps.Marker({
+            position: new google.maps.LatLng($lat, $lng),
+            title: 'boo',
+            map: map
+         });
 EOT
+   }
+   $c->stash(points_js => $points_js);
 }
 
 
