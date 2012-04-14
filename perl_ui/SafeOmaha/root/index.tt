@@ -13,14 +13,16 @@
            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+        var markers = new Array();
 
         //map.setCenter(new GLatLng(41.252363, -95.997988), 13);
         [% c.stash.points_js %]
-      }
+    }
 
     </script>
   </head>
-  <body onload="initialize()" onunload="GUnload()">
+  <body onload="initialize()">
      <a href="https://foursquare.com/deafferret">https://foursquare.com/deafferret</a>
      <div id="map_canvas" style="width:1000px;height:700px;"></div>
   </body>

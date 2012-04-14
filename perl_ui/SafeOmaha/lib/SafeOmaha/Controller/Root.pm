@@ -66,7 +66,6 @@ sub add_points_js :Private {
       var markers = new Array();
       for (var i = 0; i < $item_cnt; i++) {
 EOT
-   my $points_js;
    foreach my $item (@{$json->{response}->{checkins}->{items}}) {
       my $name = $item->{venue}->{name};
       $name =~ s/'/\\'/g;
@@ -79,12 +78,12 @@ EOT
             content:  '$name',
             map:      map
          });
-         var infowindow = new google.maps.InfoWindow({
-            content: '$name'
-         });
-         google.maps.event.addListener(markers[i], 'click', function() {
-            infowindow.open(map,markers[i]);
-         });
+         google.maps.event.addListener(markers[i], 'click', (function(marker) {
+            return function () {
+               infowindow.setContent('$name');
+               infowindow.open(map, marker);
+            };
+         })(markers[i]));
 EOT
    }
    $points_js .= <<EOT;
