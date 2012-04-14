@@ -29,12 +29,12 @@ function initialize() {
 			
 			console.log('test ' + markers[i].getTitle());
 
-			google.maps.event.addListener(markers[i], 'click', (function(marker) { 
+			google.maps.event.addListener(markers[i], 'click', (function(marker,dataSetRow) { 
 				return function () {
-					infowindow.setContent("test");
+					infowindow.setContent(dataSetRow.detail);
 					infowindow.open(map, marker);
 				};
-			})(markers[i]));
+			})(markers[i],dataSet[i]));
 			
 		}
 
