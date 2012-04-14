@@ -2,6 +2,8 @@ use strict;
 use 5.10.0;
 use URI::Escape;
 
+# https://developer.foursquare.com/overview/auth
+
 my $client_id =     "MFHWM4ODQS5CMN5FQLP5JKTBYXLC50EZCUCL5Y3XBVQRFCIQ";
 my $client_secret = "DRXK3KGJ3BYV5WRVQBXZFBSI0G3UZWWGYDP4BOJPUQWSBHUP";
 my $callback_url =  "http://localhost:8000";
