@@ -45,8 +45,8 @@
 
           <div id="intro">
             <div class="content">
-                <h1>Avoid certain areas in Omaha</h1>
-              <p>Certain areas in Omaha have proven to be more prone to crime, police intersections and accidents.Use ourmap to find out where these areas are.</p>
+                <h1>Discover Omaha's Safest Areas</h1>
+              <p>Find the areas of Omaha where you're less likely to encounter crime, police initiated activity, dangerous intersections and traffic accidents.</p>
             </div>
             <div class="divider">
             </div>
@@ -65,15 +65,18 @@
           <div id="navbar"><!--Begin navbar-->
             <input type="text" placeholder="Location" />
             <div id="divider"></div>
-            <h3>What matters most to you?</h3>
+            <h3>Personalize the map based on your risk tolerance.</h3>
             <div id="divider"></div>
-            <h4>Crime</h4>
+			<ul>
+				<li><h4>Crime</h4></li>
+				<li><input type="range" min="0" max="9" style="" /></li>
+			</ul>
             <div id="divider"></div>
             <h4>Cops</h4>
             <div id="divider"></div>
             <h4>Accidents</h4>
           </div><!--End navbar-->
-
+		  
           <div id="map"><!--Begin div that map goes into-->
               <div id="map_canvas" style="height:100%;width:100%;"></div>
           </div><!--End div that map goes into-->
