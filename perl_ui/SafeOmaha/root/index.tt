@@ -8,8 +8,8 @@
     
     function initialize() {
         var myOptions = {
-           center: new google.maps.LatLng(41.25917,-95.93386),
-           zoom: 12,
+           center: new google.maps.LatLng(41.25917,-96.06),
+           zoom: 11,
            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -22,6 +22,6 @@
   </head>
   <body onload="initialize()" onunload="GUnload()">
      <a href="https://foursquare.com/deafferret">https://foursquare.com/deafferret</a>
-     <div id="map_canvas" style="width:800px;height:500px;"></div>
+     <div id="map_canvas" style="width:1000px;height:700px;"></div>
   </body>
 </html>

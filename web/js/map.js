@@ -1,3 +1,6 @@
+var geocoder;
+var map;
+
 function initialize() {
 	var myOptions = {
 	center: new google.maps.LatLng(41.25917,-95.93386),
@@ -5,11 +8,15 @@ function initialize() {
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	
+	geocoder = new google.maps.Geocoder();
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	
+	var infowindow = new google.maps.InfoWindow();
+	
 	// load data
 	var dataSet = fetchData();
 	
-	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		var markers = new Array();
+	var markers = new Array();
 		for (var i = 0; i < dataSet.length; i++) {
 			markers[i] = new google.maps.Marker({
 				position: new google.maps.LatLng(dataSet[i].lat, dataSet[i].lng),
@@ -19,9 +26,15 @@ function initialize() {
 			
 			if (markerImages[dataSet[i].type])
 				markers[i].setIcon(markerImages[dataSet[i].type]);
-			else
 			
 			console.log('test ' + markers[i].getTitle());
+
+			google.maps.event.addListener(markers[i], 'click', (function(marker) { 
+				return function () {
+					infowindow.setContent("test");
+					infowindow.open(map, marker);
+				};
+			})(markers[i]));
 			
 		}
 
@@ -35,13 +48,15 @@ function fetchData() {
 			  "title": "Some point",
 			  "lat": 41.25768,
 			  "lng": -95.9442,
-			  "type": "crime"
+			  "type": "crime",
+			  "detail": "<h1>Crime</h1><p>Someone was robbed here</p>"
 		  },
 		  {
 			  "title": "Another point",
 			  "lat": 41.26916,
 			  "lng": -95.9418,
-			  "type": "trafficStop"
+			  "type": "trafficStop",
+			  "detail": "<h1>Traffic Stop</h1><p>Todd got a speeding ticket here</p>"
 		  }
 		];
 
