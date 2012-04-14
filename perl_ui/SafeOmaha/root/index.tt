@@ -21,6 +21,7 @@
     </script>
   </head>
   <body onload="initialize()" onunload="GUnload()">
+     <a href="https://foursquare.com/deafferret">https://foursquare.com/deafferret</a>
      <div id="map_canvas" style="width:800px;height:500px;"></div>
   </body>
 </html>
