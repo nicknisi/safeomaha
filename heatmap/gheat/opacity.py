@@ -34,6 +34,8 @@ def _build_zoom_mapping(conf=None, MAX_ZOOM=31):
                 opacity = TRANSPARENT
             else:
                 opacity = int(OPAQUE - ((zoom - zoom_opaque) * opacity_step))
+            # HACK
+            opacity = 160
             zoom_to_opacity[zoom] = opacity
 
     return zoom_to_opacity

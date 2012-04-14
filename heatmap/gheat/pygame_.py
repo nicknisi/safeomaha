@@ -37,7 +37,6 @@ class ColorScheme(base.ColorScheme):
         opacity = int(( (conf/255.0)    # from configuration
                       * (pixel/255.0)   # from per-pixel alpha
                        ) * 255)
-
         pygame.surfarray.pixels_alpha(tile)[:,:] = opacity 
         pygame.image.save(tile, fspath)
 

@@ -30,8 +30,8 @@
     
         function initialize () {
             var map = new GMap2(document.getElementById("map"));
-            var lebanon = new GLatLng(39.81447,-98.565388);
-            map.setCenter(lebanon, 4);
+            var owh = new GLatLng(41.25917,-95.93386);
+            map.setCenter(owh, 12);
             map.addOverlay(new GTileLayerOverlay(heatmap));
             map.addControl(new GLargeMapControl());
         }

@@ -97,7 +97,8 @@ class Tile(object):
         # Calculate some things.
         # ======================
 
-        dot = dots[zoom]
+        dotSize = zoom - 11 if zoom >= 11 else 0;
+        dot = dots[dotSize]
 
 
         # Translate tile to pixel coords.
