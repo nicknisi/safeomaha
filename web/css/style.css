@@ -11,7 +11,7 @@ body {margin:0px auto 0px auto; background:url(../images/bg.jpg) repeat-x #ece4c
         #intro .content p {color:#32301b; font-size:14px; padding:0; margin:0px 0px 0px 0px; line-height:18px}
 
 #navbar {width:930px; padding:13px 15px 12px 15px; margin:27px auto 0px auto; height:43px; background:url(../images/navbar-bg.png) repeat-x; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box}
-    #navbar input {float:left; background:#f6f4f4; padding:8px; width:240px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; border:1px solid #c9741f; font-size:16px; color:#c0bfba; outline:none; -moz-box-shadow:1px 1px 1px #efb377;
+    #navbar input[type="text"] {float:left; background:#f6f4f4; padding:8px; width:240px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; border:1px solid #c9741f; font-size:16px; color:#c0bfba; outline:none; -moz-box-shadow:1px 1px 1px #efb377;
 -webkit-box-shadow:1px 1px 1px #efb377; box-shadow:1px 1px 1px #efb377, inset 1px 1px #cbcaca; -webkit-transition:background-color 0.15s linear; -moz-transition:background-color 0.15s linear; -webkit-transition:background-color 0.15s linear; transition:background-color 0.15s linear}
         #navbar input:hover {background:#ffffff}
     #navbar #divider {width:2px; height:63px; float:left; background:url(../images/divider-nav.png) no-repeat; margin:-13px 25px 0px 25px}

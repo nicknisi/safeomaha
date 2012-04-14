@@ -59,18 +59,37 @@ sub end : ActionClass('RenderView') {}
 
 sub add_points_js :Private {
    my ($self, $c) = @_;
+   my @items = @{$json->{response}->{checkins}->{items}};
+   my $item_cnt = @items;
+
+   my $points_js = <<EOT;
+      var markers = new Array();
+      for (var i = 0; i < $item_cnt; i++) {
+EOT
    my $points_js;
    foreach my $item (@{$json->{response}->{checkins}->{items}}) {
-      my $lat = $item->{venue}->{location}->{lat};
-      my $lng = $item->{venue}->{location}->{lng};
+      my $name = $item->{venue}->{name};
+      $name =~ s/'/\\'/g;
+      my $lat =  $item->{venue}->{location}->{lat};
+      my $lng =  $item->{venue}->{location}->{lng};
       $points_js .= <<EOT;
-         new google.maps.Marker({
+         markers[i] = new google.maps.Marker({
             position: new google.maps.LatLng($lat, $lng),
-            title: 'boo',
-            map: map
+            title:    '$name',
+            content:  '$name',
+            map:      map
+         });
+         var infowindow = new google.maps.InfoWindow({
+            content: '$name'
+         });
+         google.maps.event.addListener(markers[i], 'click', function() {
+            infowindow.open(map,markers[i]);
          });
 EOT
    }
+   $points_js .= <<EOT;
+       }
+EOT
    $c->stash(points_js => $points_js);
 }
 
