@@ -17,7 +17,7 @@ function initialize() {
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	
-	infowindow = new google.maps.InfoWindow({"maxWidth":100});
+	infowindow = new google.maps.InfoWindow({"maxWidth":175});
 	
 	google.maps.event.addListener(map, 'click', function(event) {
 		// call web service here to get data about this point
@@ -177,7 +177,9 @@ function fetchEvents(lat,lng) {
 function handleEvents(data) {
 	var html = '';
 	for (var i = 0; i < data.items.length; i++) {
-		html += '<h2>' + data.items[i].category + '</h2>';
+		html += '<p><b>' + data.items[i].category + '</b><br>' +
+		data.items[i].meta.crimeOffenseWithXy[0].occuradd +
+		'</p>';
 	}
 
 	var finalHtml = "<div class='infowindow'>" + html + "</div>";

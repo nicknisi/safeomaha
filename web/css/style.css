@@ -33,7 +33,7 @@ body {padding:0; height:100%; margin:0px auto 0px auto; background:url(../images
 #footer {width:960px; margin:0px auto 0px auto; text-align:center; font-size:13px; color:#605c43; padding:40px 0px 40px 0px; overflow:hidden}
 .infowindow {
 	text-transform:capitalize;
-	max-height: 100px;
+	max-height: 80px;
 	scrolling: auto;
 }
 .facts {
