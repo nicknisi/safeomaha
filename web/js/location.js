@@ -51,7 +51,7 @@ function updateLocation(location)
 {
 	console.info("Updating location: " + location);
 	var requestData = {
-		address: location
+		address: location + ", Omaha, NE"
 	};
 	
 	// results.geometry.location
