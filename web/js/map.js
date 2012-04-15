@@ -79,6 +79,34 @@ function updateStats()
 	var maxX = bounds.getNorthEast().lng(); // maxX = NE x
 	var maxY = bounds.getNorthEast().lat(); // maxY = NE y
 	
+	var urlParams = "minX=" + minX + "&minY=" + minY + "&maxX=" + maxX + "&maxY=" + maxY;
+	$.getJSON(baseurl + '/node/STATS?' + urlParams, function(data) {
+		//crime-facts
+		//cops-facts
+		// ol
+		var crimes = data.topCrimes;
+		var officers = data.topOfficers;
+		
+		var topCrimesContent = "<ol>";
+		for (var crimeData in crimes)
+		{
+			topCrimesContent += "<li>" + crimeData.crime + ": " + crimeData.count + "</li>";
+		}
+		topCrimesContent += "</ol>";
+		
+		var topOfficersContent = "<ol>";
+		for (var officerData in officers)
+		{
+			topOfficersContent += "<li>Badge #" + officerData.officer + ": " + officerData.count + "</li>";
+		}
+		topOfficersContent += "</ol>";
+		
+		$("#crime-facts").html(topCrimesContent);
+		$("#cops-facts").html(topOfficersContent);
+		
+		console.info("Update stats complete. " + data);
+	});
+	
 	console.info("Update stats based on map extent minX: " + minX + ", minY: " + minY + ", maxX: " + maxX + ", maxY: " + maxX );
 }
 
