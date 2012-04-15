@@ -135,6 +135,12 @@ class Tile(object):
         # Save
         # ====
 
+        if crime == 0:
+            crimeDot.img = False
+
+        if accident == 0:
+            accidentDot.img = False
+
         self.dot = {
                 'ACCIDENT' : accidentDot.img,
                 'CRIME' : crimeDot.img
@@ -212,7 +218,7 @@ class Tile(object):
                 x, y = gmerc.ll2px(point['loc'][1], point['loc'][0], self.zoom)
                 x = x - self.x1 # account for tile offset relative to 
                 y = y - self.y1 #  overall map
-                if point["type"] in self.pad:
+                if point["type"] in self.pad and self.dot[point["type"]] != False:
                     yield { 
                         "loc" : [x-self.pad[point["type"]], y-self.pad[point["type"]]],
                         "category" : point["type"]
