@@ -83,7 +83,9 @@ console.log(data);
 
 function updateHeatmap(sliderData) {
 	console.log('sliders updated, will update map now.');
-	google.maps.event.trigger(map,'resize');
+	//google.maps.event.trigger(map,'resize');
+	//map.setZoom(map.getZoom());
+	map.setCenter(map.getCenter());
 }
 
 function makeInfoWindowContent(dataSetRow) {
