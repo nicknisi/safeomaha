@@ -107,6 +107,10 @@ console.log(data);
 
 function updateHeatmap(sliderData) {
 	console.log('sliders updated, will update map now.');
+    //map.setCenter(map.getBounds().getCenter());
+    var zoom = map.getZoom();
+    map.setZoom(zoom + 1);
+    map.setZoom(zoom)
 	google.maps.event.trigger(map,'resize');
 }
 
