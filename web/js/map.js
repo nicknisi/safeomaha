@@ -17,14 +17,14 @@ function initialize() {
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	
-	infowindow = new google.maps.InfoWindow({"maxWidth":50});
+	infowindow = new google.maps.InfoWindow({"maxWidth":100});
 	
 	google.maps.event.addListener(map, 'click', function(event) {
 		// call web service here to get data about this point
 		
 		// add a marker here, and load data about this location
 		infowindow.close();
-		infowindow.setContent("Loading....<br>" + event.latLng.lat() + "<br>" + event.latLng.lng());
+		infowindow.setContent("<center><img src='/images/ajax-loader.gif'></center>");
 		infowindow.setPosition(event.latLng);
 		infowindow.open(map);
 		
@@ -138,7 +138,7 @@ function fetchEvents(lat,lng) {
 	}
 
 function handleEvents(data) {
-	infowindow.setContent(data.toString());
+	infowindow.setContent();
 }
 
 // define images for different types of data (http://jg.org/mapping/icons.html)
