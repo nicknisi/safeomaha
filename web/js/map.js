@@ -16,7 +16,11 @@ function initialize() {
 		//fetchDetail(event.latLng.lat(),event.latLng.lng())
 		
 		// add a marker here, and load data about this location
-
+		infowindow.close();
+		infowindow.setContent("Will detail about<br>" + event.latLng.lat() + "<br>" + event.latLng.lng() + "<br> here once the web service has been created.");
+		infowindow.setPosition(event.latLng);
+		infowindow.open(map);
+		
 	    console.log(event.latLng.lat(),event.latLng.lng());
 	  });
 	
