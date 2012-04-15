@@ -21,17 +21,17 @@ function initialize() {
 	
 	google.maps.event.addListener(map, 'click', function(event) {
 		// call web service here to get data about this point
-		nearbyEvents = fetchEvents(event.latLng.lat(),event.latLng.lng())
 		
 		// add a marker here, and load data about this location
 		infowindow.close();
-		infowindow.setContent("Will detail about<br>" + event.latLng.lat() + "<br>" + event.latLng.lng() + "<br> here once the web service has been created.");
+		infowindow.setContent("Loading....<br>" + event.latLng.lat() + "<br>" + event.latLng.lng());
 		infowindow.setPosition(event.latLng);
 		infowindow.open(map);
 		
-	    console.log(event.latLng.lat(),event.latLng.lng());
+		fetchEvents(event.latLng.lat(),event.latLng.lng());
+		//console.log(event.latLng.lat(),event.latLng.lng());
 	  });
-	
+
 	listenForBoundsChange();
 	
     map.overlayMapTypes.insertAt(0, new google.maps.ImageMapType({
@@ -130,22 +130,13 @@ function fetchData() {
 
 }
 
-function fetchEvents() {
-	
-	return;
-	
-	$.get(baseurl + '/node');
-	
-	$.getJSON(baseurl + '/node', function(data) {
-		console.log(data);
-		  //var items = [];
-
-		  //$.each(data, function(key, val) {
-		    //items.push('<li id="' + key + '">' + val + '</li>');
-		  //});
-
-		});
+function fetchEvents(lat,lng) {
+	$.getJSON(baseurl + '/node?x=' + lng + '&y=' + lat + '&radius=.1&meta=true', handleEvents(data));
 	}
+
+function handleEvents(data) {
+	infowindow.setContent('test');
+}
 
 // define images for different types of data (http://jg.org/mapping/icons.html)
 var markerImages = {
