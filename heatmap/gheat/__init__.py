@@ -26,7 +26,7 @@ MAX_ZOOM = 31 # this depends on Google API; 0 is furthest out as of recent ver.
 
 def get_cursor():
     mconn = pymongo.Connection()
-    return mconn.heatmaps.points
+    return mconn.safeomaha.safeitems
 
 from gheat import pygame_ as backend
 
@@ -70,7 +70,7 @@ def get_tile(path):
         raw = path[:-4] # strip extension
         try:
             assert raw.count('/') == 7, "%d /'s %s" % (raw.count('/'), raw)
-            foo, dbname, crimePref, accidentPref, copPref, color_scheme, zoom, xy = raw.split('/')
+            foo, dbname, crimePref, copPref, accidentPref, color_scheme, zoom, xy = raw.split('/')
             assert color_scheme in color_schemes, ( "bad color_scheme: "
                                                   + color_scheme
                                                    )
