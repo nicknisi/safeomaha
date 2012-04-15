@@ -32,6 +32,8 @@ function initialize() {
 	    console.log(event.latLng.lat(),event.latLng.lng());
 	  });
 	
+	listenForBoundsChange();
+	
     map.overlayMapTypes.insertAt(0, new google.maps.ImageMapType({
         getTileUrl: function (tile, zoom) {
         	var sliderData = getSliderData();
@@ -54,6 +56,28 @@ function initialize() {
 	
 	//fetchData();
 
+}
+
+function listenForBoundsChange()
+{
+	google.maps.event.addListenerOnce(map, 'bounds_changed', function(){
+		google.maps.event.addListenerOnce(map, 'idle', function(){
+			updateStats();
+			listenForBoundsChange();
+		});
+	});
+}
+
+function updateStats()
+{
+	var bounds = map.getBounds();
+	// pass extent to service
+	var minX = bounds.getSouthWest().lng(); // minX = SW x
+	var minY = bounds.getSouthWest().lat(); // minY = SW y
+	var maxX = bounds.getNorthEast().lng(); // maxX = NE x
+	var maxY = bounds.getNorthEast().lat(); // maxY = NE y
+	
+	console.info("Update stats based on map extent minX: " + minX + ", minY: " + minY + ", maxX: " + maxX + ", maxY: " + maxX );
 }
 
 function drawMarkers(data) {
