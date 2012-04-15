@@ -1,0 +1,70 @@
+<html>                                                                  
+<head>                                                                  
+<script type="text/javascript" src="/js/jquery.js"></script>          
+<script type="text/javascript">                                         
+$(document).ready(function() {
+   // $("a").click(function() {
+   var access_token = window.location.hash.split('=')[1];
+   if (access_token) {
+      createCookie('access_token', access_token, 1000);
+   }
+   console.debug('Your access_token is ' + readCookie('access_token'));
+   access_token = readCookie('access_token');
+   var url = 'https://api.foursquare.com/v2/users/self/checkins?oauth_token=' + access_token;
+   $.ajax({
+      url: url, 
+      dataType: 'json',
+      success: function (data, textStatus, jqXHR) {
+         console.debug('success! ' + textStatus + ' ' + data.response.checkins.count);
+         map_points(data.response.checkins.items);
+      }
+   });
+ 
+
+function map_points(items) {
+   for (var i in items) {
+      var name = items[i].venue.name;
+      var lat =  items[i].venue.location.lat;
+      var lng =  items[i].venue.location.lng;
+      console.debug(name + ' ' + lat + ' ' + lng);
+   }
+}
+
+
+// http://www.quirksmode.org/js/cookies.html
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+});
+</script>                                                               
+</head>                                                                 
+<body>                                
+   <a href="https://foursquare.com/oauth2/authenticate?client_id=MFHWM4ODQS5CMN5FQLP5JKTBYXLC50EZCUCL5Y3XBVQRFCIQ&response_type=token&redirect_uri=http://safeomaha.org/foursquare/oauth2.html">Link your Foursquare</a>
+
+   
+
+</body>                                                                 
+</html>
+
