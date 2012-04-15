@@ -90,7 +90,7 @@ class Tile(object):
 
     img = None
 
-    def __init__(self, color_scheme, dots, zoom, x, y, fspath, mapname):
+    def __init__(self, color_scheme, dots, zoom, x, y, crime, accident, cops, fspath, mapname):
         """x and y are tile coords per Google Maps.
         """
 

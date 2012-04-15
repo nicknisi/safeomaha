@@ -15,3 +15,8 @@ to install less
 to install uglify-js
 
 	npm install -g uglify-js
+
+# heatmap
+
+Heatmap is based off of a CGI port of gheat, a tool for drawing heatmaps based on google maps. it requires you to set up
+mod\_rewrite and to allow .htaccess files to override things. This is designed to run with apache as a frontend.

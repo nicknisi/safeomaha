@@ -11,7 +11,7 @@ import gheat
 if os.getenv("DEBUG"):
     os.remove("/var/cache/"+os.getenv("REQUEST_URI"))
 
-fn = gheat.get_tile("/"+"/".join(os.getenv("REQUEST_URI").split("/")[-4:]))
+fn = gheat.get_tile("/"+"/".join(os.getenv("REQUEST_URI").split("/")[-7:]))
 
 if not os.path.exists(fn):
     print "Status: 404 Not Found"

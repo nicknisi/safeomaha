@@ -1,0 +1,10 @@
+Addhandler cgi-script .py
+Options +ExecCGI -Indexes -MultiViews +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteBase /node
+RewriteRule ^(.*) http://localhost:8088/safeomaha/$1 [P,L]
+
+</IfModule>

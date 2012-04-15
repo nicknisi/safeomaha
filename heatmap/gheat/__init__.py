@@ -61,7 +61,7 @@ def get_tile(path):
         # =========================
         # URL paths are of the form:
         #
-        #   /<mapname>/<color_scheme>/<zoom>/<x>,<y>.png
+        #   /<mapname>/<w1>/<w2>/<w3>/<color_scheme>/<zoom>/<x>,<y>.png
         #
         # E.g.:
         #
@@ -69,17 +69,21 @@ def get_tile(path):
 
         raw = path[:-4] # strip extension
         try:
-            assert raw.count('/') == 4, "%d /'s" % raw.count('/')
-            foo, dbname, color_scheme, zoom, xy = raw.split('/')
+            assert raw.count('/') == 7, "%d /'s %s" % (raw.count('/'), raw)
+            foo, dbname, crimePref, accidentPref, copPref, color_scheme, zoom, xy = raw.split('/')
             assert color_scheme in color_schemes, ( "bad color_scheme: "
                                                   + color_scheme
                                                    )
             assert xy.count(',') == 1, "%d /'s" % xy.count(',')
             x, y = xy.split(',')
             assert zoom.isdigit() and x.isdigit() and y.isdigit(), "not digits"
+            assert crimePref.isdigit() and copPref.isdigit() and accidentPref.isdigit(), "not digits"
             zoom = int(zoom)
             x = int(x)
             y = int(y)
+            crimePref = int(crimePref);
+            accidentPref = int(accidentPref);
+            copPref = int(copPref);
             assert 0 <= zoom <= 30, "bad zoom: %d" % zoom
         except AssertionError, err:
             return str(err)
@@ -90,7 +94,7 @@ def get_tile(path):
         # The tile that is built here will be served by the static handler.
 
         color_scheme = color_schemes[color_scheme]
-        tile = backend.Tile(color_scheme, dots, zoom, x, y, fspath, dbname)
+        tile = backend.Tile(color_scheme, dots, zoom, x, y, crimePref, accidentPref, copPref, fspath, dbname)
         if tile.is_empty():
             emptypath = color_scheme.get_empty_fspath(zoom)
             if not os.path.exists(os.path.dirname(fspath)):
