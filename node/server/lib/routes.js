@@ -22,6 +22,20 @@ var connect = function (cb) {
     return ret;
 };
 
+var getSpatialQuery = function(opts, query){
+    if (query.x && query.y) {
+        opts.loc = [parseFloat(query.x), parseFloat(query.y)];
+        if (query.radius) {
+            opts.radius = parseFloat(query.radius);
+        }
+    } else if (query.minx && query.miny && query.maxx && query.maxy) {
+        opts.box = [
+            [parseFloat(query.minx), parseFloat(query.miny)],
+            [parseFloat(query.maxx), parseFloat(query.maxy)]
+        ];
+    }
+}
+
 exports.route = function (app) {
     var SafeItem = mongoose.model("SafeItem");
 
@@ -29,6 +43,7 @@ exports.route = function (app) {
         connect().then(function () {
             SafeItem.types(function (err, types) {
                 if (err) {
+                    res.header("max-age", 100000000);
                     res.json({error:err.stack});
                 } else {
                     res.json({types:types})
@@ -43,12 +58,7 @@ exports.route = function (app) {
         var type = req.params.type, query = req.query, loc;
         connect().then(function () {
             var opts = {type:type};
-            if (query.x && query.y) {
-                opts.loc = [parseFloat(query.x), parseFloat(query.y)];
-                if (query.radius) {
-                    opts.radius = parseFloat(query.radius);
-                }
-            }
+            getSpatialQuery(opts, query);
             SafeItem.getItems(opts, query.meta, function (err, items) {
                 if (err) {
                     res.json({error:err.stack});
@@ -83,12 +93,7 @@ exports.route = function (app) {
             if (category) {
                 var opts = {type:type, category:category};
                 var query = req.query;
-                if (query.x && query.y) {
-                    opts.loc = [parseFloat(query.x), parseFloat(query.y)];
-                    if (query.radius) {
-                        opts.radius = parseFloat(query.radius);
-                    }
-                }
+                getSpatialQuery(opts, query);
                 SafeItem.getItems(opts, query.meta, function (err, items) {
                     if (err) {
                         res.json({error:err.stack});
@@ -108,12 +113,7 @@ exports.route = function (app) {
         connect().then(function () {
             var opts = {};
             var query = req.query;
-            if (query.x && query.y) {
-                opts.loc = [parseFloat(query.x), parseFloat(query.y)];
-                if (query.radius) {
-                    opts.radius = parseFloat(query.radius);
-                }
-            }
+            getSpatialQuery(opts, query);
             SafeItem.getItems(opts, query.meta, function (err, items) {
                 if (err) {
                     res.json({error:err.stack});

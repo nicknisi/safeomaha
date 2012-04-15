@@ -52,15 +52,20 @@ var importData = function (fileName) {
                             var loc = item.loc = item.loc.map(function (t) {
                                 return parseFloat(t);
                             });
-                            if (loc.length == 2 && !isNaN(loc[0]) && !isNaN(loc[1]) && comb.isNumber(loc[0]) && comb.isNumber(loc[1])) {
-                                var sf = new SafeItem(item);
-                                sf.save(function (err, res) {
-                                    if (err) {
-                                        errorHandler(err);
-                                    } else {
-                                        loop(++i);
-                                    }
-                                })
+                            if (loc.length == 2 && !isNaN(loc[0]) && !isNaN(loc[1]) && comb.isNumber(loc[0]) && comb.isNumber(loc[1]) && loc[0] && loc[1]) {
+                                if (loc[0] > -180 && loc[0] < 180 && loc[1] < 90 && loc[1] > -90) {
+                                    var sf = new SafeItem(item);
+                                    sf.save(function (err, res) {
+                                        if (err) {
+                                            errorHandler(err);
+                                        } else {
+                                            loop(++i);
+                                        }
+                                    })
+                                } else {
+                                    loop(++i);
+                                }
+
                             } else {
                                 loop(++i);
                             }
