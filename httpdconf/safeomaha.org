@@ -1,0 +1,37 @@
+<VirtualHost safeomaha.org:80>
+    ServerAdmin webmaster@safeomaha.org
+    DocumentRoot /var/www/safeomaha/web
+
+
+    <Directory />
+        AllowOverride None
+        Options +ExecCGI
+        AddHandler cgi-script .cgi .pl
+    </Directory>
+
+    <Directory /var/www/safeomaha>
+        AllowOverride All
+        Options Indexes FollowSymLinks MultiViews +ExecCGI
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    Alias /node /var/www/safeomaha/node
+    ProxyPass /node http://localhost:8088/safeomaha
+    ProxyPassReverse /node http://localhost:8088/safeomaha
+    Alias /heatmap /var/www/safeomaha/heatmap
+
+    Alias /mapcache /var/cache/heatmap
+    <Directory "/var/cache/heatmap">
+        AllowOverride None
+        Options Indexes FollowSymLinks MultiViews
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+
