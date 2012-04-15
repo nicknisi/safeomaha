@@ -50,33 +50,36 @@
               <p>If anything, it’s interesting to see how your place of residence, work or play stacks up to other parts of the city.</p>
             </div>
           </div>
-
-          <div id="navbar"><!--Begin navbar-->
-            <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
-            <div id="divider"></div>
-            <h3>Personalize the map based on your risk tolerance.</h3>
-          </div><!--End navbar-->
 		  
-		  <div id="controls">
-		  	  <div style="display:inline-block; vertical-align:top; width:240px;">
-		  	  	  <h2>Severity Rating</h2>
-				  <ul>
-				  	<li>
-				  		<h4>Crime</h4>
-						<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'crime')" />
-					</li>
-					<li>
-						<h4>Cops</h4>
-						<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'police')" />
-					</li>
-					<li>
-						<h4>Accidents</h4>
-						<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
-					</li>
-				  </ul>
-		  	  </div>
+		  <div id="content-container">
+	          <div id="navbar"><!--Begin navbar-->
+	            <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
+	            <div id="divider"></div>
+	            <h3>Personalize the map based on your risk tolerance.</h3>
+	          </div><!--End navbar-->
 			  
-			  <div id="map_canvas" style="display:inline-block;height:450px;width:716px;"></div>
+			  <div id="controls">
+			  	  <div id="slider-container">
+			  	  	  <h2>Severity Rating</h2>
+					  <ul>
+					  	<li>
+					  		<h4>Crime</h4>
+							<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'crime')" />
+						</li>
+						<li>
+							<h4>Cops</h4>
+							<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'police')" />
+						</li>
+						<li>
+							<h4>Accidents</h4>
+							<input type="range" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
+						</li>
+					  </ul>
+			  	  </div>
+				  
+				  <div id="map_canvas" style="height:450px; width:716px;"></div>
+				  <div style="clear: both;" />
+			  </div>
 		  </div>
     </body>
 </html>

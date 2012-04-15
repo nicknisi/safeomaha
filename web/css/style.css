@@ -10,7 +10,7 @@ body {margin:0px auto 0px auto; background:url(../images/bg.jpg) repeat-x #ece4c
         #intro .content h1 {font-size:19px; color:#32301b; padding:0; margin:0}
         #intro .content p {color:#32301b; font-size:14px; padding:0; margin:0px 0px 0px 0px; line-height:18px}
 
-#navbar {width:930px; padding:13px 15px 12px 15px; margin:27px auto 0px auto; height:43px; background:url(../images/navbar-bg.png) repeat-x; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box}
+#navbar {padding:13px 15px 12px 15px; margin: 0 0 10px; height:38px; background:url(../images/navbar-bg.png) repeat-x; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box}
     #navbar input[type="text"] {float:left; background:#f6f4f4; padding:8px; width:240px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; border:1px solid #c9741f; font-size:16px; color:#c0bfba; outline:none; -moz-box-shadow:1px 1px 1px #efb377;
 -webkit-box-shadow:1px 1px 1px #efb377; box-shadow:1px 1px 1px #efb377, inset 1px 1px #cbcaca; -webkit-transition:background-color 0.15s linear; -moz-transition:background-color 0.15s linear; -webkit-transition:background-color 0.15s linear; transition:background-color 0.15s linear}
         #navbar input:hover {background:#ffffff}
@@ -18,7 +18,18 @@ body {margin:0px auto 0px auto; background:url(../images/bg.jpg) repeat-x #ece4c
     #navbar h3 {float:left; color:#1a190a; font-size:15px; margin:13px 0px 0px -5px; padding:0; font-weight:normal}
     #navbar h4 {color:#1a190a; font-size:14px; padding:0; margin:0px 0px 0px 0px; float:left}
 
-#map {height:100%;width:952px; margin:-5px auto 0px auto; background:#d3d2cc; padding:4px}
+#map_canvas {float:left; margin: 5px 0 5px;}
 
-#controls {width: 960px; margin: 0 auto;}
-#controls ul { list-style: none; margin: 0; padding: 0; }
+#content-container { width:960px; margin: 20px auto 0; padding: 0;}
+
+#controls {overlow: auto; clear:both; background: #37341F; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; color:#ece4c7;}
+#slider-container {float:left; vertical-align:top; width:240px;}
+#slider-container h2 { margin: 5px 0; margin-left: 14px; }
+#slider-container ul { list-style: none; margin: 0; padding: 0; margin-left: 14px; }
+
+h1,h2,h3,h4,h5,h6
+{
+	-moz-text-shadow: 1px 1px 3px #777;
+	-webkit-text-shadow: 1px 1px 3px #777;
+	text-shadow: 1px 1px 3px #777;
+}
