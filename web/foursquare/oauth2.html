@@ -34,18 +34,30 @@ function map_points(items) {
 
    for (var i in items) {
       (function(){
-         var name = items[i].venue.name;
-         var lat =  items[i].venue.location.lat;
-         var lng =  items[i].venue.location.lng;
+         var createdat =  items[i].createdAt;
+         var name =       items[i].venue.name;
+         var url =        items[i].venue.url;
+         var lat =        items[i].venue.location.lat;
+         var lng =        items[i].venue.location.lng;
+         var address =    items[i].venue.location.address;
+         var city =       items[i].venue.location.city;
+         var state =      items[i].venue.location.state;
+         var postalcode = items[i].venue.location.postalCode;
+         var country =    items[i].venue.location.country;
          console.debug(name + ' ' + lat + ' ' + lng);
 
+         var created = new Date(createdat * 1000);
          var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             title:    name,
             map:      map
          });
          google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent(name);
+            infowindow.setContent(
+               '<a href="' + url + '">' + name + '</a><br/>' + 
+               created.toDateString() + '<br/>' + 
+               address + '<br/>' + city + ', ' + state + ' ' + postalcode + ' ' + country
+            );
             infowindow.open(map, marker);
          });
       })();
