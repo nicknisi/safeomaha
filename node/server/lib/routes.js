@@ -40,9 +40,16 @@ exports.route = function (app) {
     });
 
     app.get("/safeomaha/:type", function (req, res) {
-        var type = req.params.type, query = req.query;
+        var type = req.params.type, query = req.query, loc;
         connect().then(function () {
-            SafeItem.getItems(type, null, query.meta, function (err, items) {
+            var opts = {type:type};
+            if (query.x && query.y) {
+                opts.loc = [parseFloat(query.x), parseFloat(query.y)];
+                if (query.radius) {
+                    opts.radius = parseFloat(query.radius);
+                }
+            }
+            SafeItem.getItems(opts, query.meta, function (err, items) {
                 if (err) {
                     res.json({error:err.stack});
                 } else {
@@ -73,9 +80,16 @@ exports.route = function (app) {
         connect().then(function () {
             var type = req.params.type;
             var category = req.params.category;
-            var query = req.query;
             if (category) {
-                SafeItem.getItems(type, category, query.meta, function (err, items) {
+                var opts = {type:type, category:category};
+                var query = req.query;
+                if (query.x && query.y) {
+                    opts.loc = [parseFloat(query.x), parseFloat(query.y)];
+                    if (query.radius) {
+                        opts.radius = parseFloat(query.radius);
+                    }
+                }
+                SafeItem.getItems(opts, query.meta, function (err, items) {
                     if (err) {
                         res.json({error:err.stack});
                     } else {
@@ -85,6 +99,28 @@ exports.route = function (app) {
             } else {
                 next();
             }
+        }, function (err) {
+            res.json({error:err.stack});
+        });
+    });
+
+    app.get("/safeomaha", function (req, res) {
+        connect().then(function () {
+            var opts = {};
+            var query = req.query;
+            if (query.x && query.y) {
+                opts.loc = [parseFloat(query.x), parseFloat(query.y)];
+                if (query.radius) {
+                    opts.radius = parseFloat(query.radius);
+                }
+            }
+            SafeItem.getItems(opts, query.meta, function (err, items) {
+                if (err) {
+                    res.json({error:err.stack});
+                } else {
+                    res.json({items:items})
+                }
+            });
         }, function (err) {
             res.json({error:err.stack});
         });
