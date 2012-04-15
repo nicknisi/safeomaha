@@ -11,7 +11,16 @@ function initialize() {
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	
-	var infowindow = new google.maps.InfoWindow();
+	google.maps.event.addListener(map, 'click', function(event) {
+		// call web service here to get data about this point
+		//fetchDetail(event.latLng.lat(),event.latLng.lng())
+		
+		// add a marker here, and load data about this location
+
+	    console.log(event.latLng.lat(),event.latLng.lng());
+	  });
+	
+	var infowindow = new google.maps.InfoWindow({"maxWidth":50});
 	
 	// load data
 	var dataSet = fetchData();
