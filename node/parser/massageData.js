@@ -4,7 +4,7 @@ var comb = require("comb"),
 format = comb.string.format,
     fs = require("fs"),
     request = require("request");
-var ds = ["bicycleAccidents", "buildingCodeViolations", "campaignContributions", "crimeNames", "crimeOffenseWithXy",
+var ds = ["bicycleAccidents", "buildingCodeViolations", "campaignContributions", "crimeNames", "crimeAdmin", "crimeOffenseWithXy",
     "crimeProperty", "crimeVehicle", "foodInspections", "liquorLicenses", "parkingMetersWithXy", "pedestrianAccidents",
     "schoolCensusScores"];
 
@@ -197,7 +197,7 @@ var massageSchoolCensusScores = function () {
 
 var massageCrimes = function () {
     var crimesByRptNum = {};
-    ["crimeNames", "crimeOffenseWithXy", "crimeProperty", "crimeVehicle"].forEach(function (i) {
+    ["crimeOffenseWithXy", "crimeAdmin"].forEach(function (i) {
         datasets[i].forEach(function (b) {
             var key = b.rbnumber || b.rptNum || b.reportId;
             var item = crimesByRptNum[key];
@@ -205,6 +205,7 @@ var massageCrimes = function () {
                 item = crimesByRptNum[key] = {}
             }
             var element = item[i];
+            console.log(i);
             if (!element) {
                 item[i] = [b];
             } else {
