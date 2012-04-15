@@ -147,7 +147,7 @@ function handleEvents(data) {
 		html += '<h2>' + data.items[i].type + '</h2>';
 	}
 
-	infowindow.setContent(html);
+	infowindow.setContent("<div class='infowindow'>" + html + "</div");
 }
 
 // define images for different types of data (http://jg.org/mapping/icons.html)
