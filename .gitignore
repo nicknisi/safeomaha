@@ -32,3 +32,9 @@ nbproject
 .svn
 .CVS
 .idea
+
+#Idea files
+atlassian-ide-plugin.xml
+
+#NODE Folders
+node_modules
