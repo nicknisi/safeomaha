@@ -38,8 +38,14 @@
 
     </script>
   </head>
+  [% client_id =    'MFHWM4ODQS5CMN5FQLP5JKTBYXLC50EZCUCL5Y3XBVQRFCIQ' %]
+  [% callback_url = 'http://safeomaha.org/oauth2' %]
   <body onload="initialize()">
      <a href="https://foursquare.com/deafferret">https://foursquare.com/deafferret</a>
-     <div id="map_canvas" style="width:1000px;height:700px;"></div>
+     <a href="https://foursquare.com/oauth2/authenticate?client_id=[% client_id %]&response_type=token&redirect_uri=[% callback_url %]">Link your Foursquare</a>
+     <div id="map_canvas" style="width:1000px;height:400px;"></div>
   </body>
 </html>
+
+
+
