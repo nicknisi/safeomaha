@@ -50,7 +50,8 @@ function map_points(items) {
          var marker = new google.maps.Marker({
             position: new google.maps.LatLng(lat, lng),
             title:    name,
-            map:      map
+            map:      map,
+            icon:     "/images/marker_sprite.png"
          });
          google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(
