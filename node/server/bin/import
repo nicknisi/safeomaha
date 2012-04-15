@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+"use strict";
+var comb = require("comb"),
+    mongoose = require("mongoose"),
+    path = require("path"),
+    config = require("../config.js"),
+    multimeter = require('multimeter'),
+    multi = multimeter(process);
+require("../lib/models");
+
+var SafeItem = mongoose.model("SafeItem"), connected;
+var connect = function (cb) {
+    var ret = new comb.Promise();
+    if (!connected) {
+        mongoose.connect(config.MONGO_URL, function (err) {
+            if (err) {
+                ret.errback(err);
+            } else {
+                connected = true;
+                ret.callback();
+            }
+        });
+    } else {
+        ret.callback();
+    }
+    return ret;
+};
+
+var errorHandler = function (err) {
+    console.error(err.stack);
+    process.exit(1);
+};
+
+var importData = function (fileName) {
+    var data = require(fileName);
+    var l = data.length;
+    var ret = new comb.Promise();
+    multi.drop(function (bar) {
+        connect().then(function () {
+            console.log("Importing " + l + " items")
+            SafeItem.collection.drop(function (err) {
+                (function loop(i) {
+                    try {
+                        if (i >= l) {
+                            console.log("Done importing " + l + " items")
+                            process.exit();
+                        } else {
+                            var p = bar.percent();
+                            bar.percent((i / l) * 100);
+                            var item = data[i];
+                            var loc = item.loc = item.loc.map(function (t) {
+                                return parseFloat(t);
+                            });
+                            if (loc.length == 2 && !isNaN(loc[0]) && !isNaN(loc[1]) && comb.isNumber(loc[0]) && comb.isNumber(loc[1])) {
+                                var sf = new SafeItem(item);
+                                sf.save(function (err, res) {
+                                    if (err) {
+                                        errorHandler(err);
+                                    } else {
+                                        loop(++i);
+                                    }
+                                })
+                            } else {
+                                loop(++i);
+                            }
+                        }
+                    } catch (e) {
+                        errorHandler(err);
+                    }
+                })(0);
+            });
+        }, comb.hitch(ret, "errback"));
+    });
+    return ret;
+};
+
+importData(path.resolve(process.cwd(), process.argv[2]));
+
+
+
