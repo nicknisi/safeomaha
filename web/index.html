@@ -59,17 +59,17 @@
                       <h2><strong>Personalize the map</strong> based on your tolerance and sensitivity to our risk categories</h2>
                       <ul>
                         <li>
-                            <h4>Crime</h4>
+                            <h4 id="crime-toggler">Crime</h4>
                             <input type="range" id="crimeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'crime')" />
                             <div id="crime-facts"></div>
                         </li>
                         <li>
-                            <h4>Cops</h4>
+                            <h4 id="cops-toggler">Cops</h4>
                             <input type="range" id="policeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'police')" />
                             <div id="cops-facts"></div>
                         </li>
                         <li>
-                            <h4>Accidents</h4>
+                            <h4 id="accidents-toggler">Accidents</h4>
                             <input type="range" id="accidentSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
                         </li>
                       </ul>
