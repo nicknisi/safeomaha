@@ -31,7 +31,25 @@ function initialize() {
 		
 	    console.log(event.latLng.lat(),event.latLng.lng());
 	  });
-		
+	
+    map.overlayMapTypes.insertAt(0, new google.maps.ImageMapType({
+        getTileUrl: function (tile, zoom) {
+        	var sliderData = getSliderData();
+            var base = '/heatmap';
+            map_name = 'goodCrime';
+            color_scheme = 'classic';
+            url = base +'/'+ map_name +'/' + 
+            sliderData["crimeSlider"] + '/' +
+            sliderData["policeSlider"] + '/' +
+            sliderData["accidentSlider"] + '/' +
+            color_scheme +'/'+ zoom +'/'
+            url += tile.x +','+ tile.y +'.png';
+            return url;
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true
+    }));
+    	
 	// load data
 	
 	//fetchData();
@@ -64,8 +82,8 @@ console.log(data);
 }
 
 function updateHeatmap(sliderData) {
-	console.log('test');
-	console.log(sliderData);
+	console.log('sliders updated, will update map now.');
+	google.maps.event.trigger(map,'resize');
 }
 
 function makeInfoWindowContent(dataSetRow) {
