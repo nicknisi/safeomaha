@@ -99,6 +99,14 @@ function updateRating(ratingType, ratingValue)
 {
 	console.info("Updating " + ratingType + " rating value: " + ratingValue);
 	
+	var sliderData = {
+		"crimeSlider": $('#crimeSlider').val(),
+		"policeSlider": $('#policeSlider').val(),
+		"accidentSlider": $('#accidentSlider').val()
+	};
+
+	updateHeatmap( sliderData );
+	
 	if (ratingType == "crime")
 	{
 	}
