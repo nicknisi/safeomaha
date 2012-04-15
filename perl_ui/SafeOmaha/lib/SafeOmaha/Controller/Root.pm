@@ -34,7 +34,8 @@ The root page (/)
 
 sub index :Path :Args(0) {
    my ( $self, $c ) = @_;
-   $self->add_points_js($c);
+   $c->stash->{foursquare}->{checkins} = $json;
+   # $self->add_points_js($c);
 }
 
 =head2 default
