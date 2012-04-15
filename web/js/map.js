@@ -37,7 +37,7 @@ function initialize() {
     map.overlayMapTypes.insertAt(0, new google.maps.ImageMapType({
         getTileUrl: function (tile, zoom) {
         	var sliderData = getSliderData();
-            var base = '/heatmap';
+            var base = 'http://50.116.21.17:80/heatmap';
             map_name = 'goodCrime';
             color_scheme = 'classic';
             url = base +'/'+ map_name +'/' + 
@@ -80,7 +80,7 @@ function updateStats()
 	var maxY = bounds.getNorthEast().lat(); // maxY = NE y
 	
 	var urlParams = "minX=" + minX + "&minY=" + minY + "&maxX=" + maxX + "&maxY=" + maxY;
-	$.getJSON(baseurl + '/node/stats?' + urlParams, function(data) {
+	$.getJSON(baseurl + '/safeomaha/stats?' + urlParams, function(data) {
 		//crime-facts
 		//cops-facts
 		// ol
@@ -162,7 +162,7 @@ function makeInfoWindowContent(dataSetRow) {
 function fetchData() {
 	// place holder function. This will fetch data later
 
-	$.getJSON(baseurl + '/node/ACCIDENT?meta=true', function(data) {
+	$.getJSON(baseurl + '/safeomaha/ACCIDENT?meta=true', function(data) {
 		drawMarkers(data);
 	});
 
@@ -170,7 +170,7 @@ function fetchData() {
 
 function fetchEvents(lat,lng) {
 	console.log('fetchEvents called.');
-	$.getJSON(baseurl + '/node/CRIME?x=' + lng + '&y=' + lat + '&radius=25&meta=true', handleEvents);
+	$.getJSON(baseurl + '/safeomaha/CRIME?x=' + lng + '&y=' + lat + '&radius=25&meta=true', handleEvents);
 	}
 
 function handleEvents(data) {
