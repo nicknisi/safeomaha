@@ -12,23 +12,26 @@ body {padding:0; height:100%; margin:0px auto 0px auto; background:url(../images
         #intro .content p {color:#32301b; font-size:13px; padding:0; margin:0px 0px 0px 0px; line-height:18px}
 
 #content-container {width:960px; margin:20px auto 0; padding:0}
-	#navbar {padding:13px 15px 12px 15px; margin:0 0 10px; height:38px; background:url(../images/navbar-bg.png) repeat-x; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip:padding; -webkit-background-clip:padding-box; background-clip:padding-box}
-			#navbar input[type="text"] {float:left; background:#f6f4f4; padding:8px; width:240px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; border:1px solid #c9741f; font-size:16px; color:#c0bfba; outline:none; -moz-box-shadow:1px 1px 1px #efb377;
-	-webkit-box-shadow:1px 1px 1px #efb377; ; -webkit-transition:background-color 0.15s linear; -moz-transition:background-color 0.15s linear; -webkit-transition:background-color 0.15s linear; transition:background-color 0.15s linear}
-					#navbar input:hover {background:#ffffff}
-			#navbar #divider {width:2px; height:63px; float:left; background:url(../images/divider-nav.png) no-repeat; margin:-13px 25px 0px 25px}
-			#navbar h3 {float:left; color:#1a190a; font-size:15px; margin:13px 0px 0px -5px; padding:0; font-weight:normal}
-			#navbar h4 {color:#1a190a; font-size:14px; padding:0; margin:0px 0px 0px 0px; float:left}
-			
-		#navbar #foursquare {float:right; width:334px; height:31px; cursor:pointer; background:url(../images/foursquare.png) no-repeat; margin-top:3px}
-			#navbar #foursquare:hover {opacity:0.95}
+    #navbar {padding:13px 15px 12px 15px; margin:0 0 10px; height:38px; background:url(../images/navbar-bg.png) repeat-x; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip:padding; -webkit-background-clip:padding-box; background-clip:padding-box}
+            #navbar input[type="text"] {float:left; background:#f6f4f4; padding:8px; width:240px; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px;-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; border:1px solid #c9741f; font-size:16px; color:#c0bfba; outline:none; -moz-box-shadow:1px 1px 1px #efb377;
+    -webkit-box-shadow:1px 1px 1px #efb377; ; -webkit-transition:background-color 0.15s linear; -moz-transition:background-color 0.15s linear; -webkit-transition:background-color 0.15s linear; transition:background-color 0.15s linear}
+                    #navbar input:hover {background:#ffffff}
+            #navbar #divider {width:2px; height:63px; float:left; background:url(../images/divider-nav.png) no-repeat; margin:-13px 25px 0px 25px}
+            #navbar h3 {float:left; color:#1a190a; font-size:15px; margin:13px 0px 0px -5px; padding:0; font-weight:normal}
+            #navbar h4 {color:#1a190a; font-size:14px; padding:0; margin:0px 0px 0px 0px; float:left}
+            
+        #navbar #foursquare {float:right; width:334px; height:31px; cursor:pointer; background:url(../images/foursquare.png) no-repeat; margin-top:3px}
+            #navbar #foursquare:hover {opacity:0.95}
 
-	#controls {overlow:auto; background:#dcd2aa; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; float:left}
-		#slider-container {float:left; vertical-align:top; width:244px;height:450px; margin:5px 0px 0px 5px; -webkit-border-top-left-radius: 2px; -webkit-border-bottom-left-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-bottomleft: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; background:url(../images/sidebar-bg.png) repeat-y #f6f4f4; background-position:top right}
-		#slider-container h2 {margin:15px 10px 0px 10px; padding:6px 6px 18px 6px; color:#000; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
-		#slider-container ul {list-style: none; margin:-5px 10px 5px 10px; color:#000; font-size:15px; padding:0px 6px 21px 6px; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
+    #controls {overlow:auto; background:#dcd2aa; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; float:left}
+        #slider-container {float:left; vertical-align:top; width:244px;height:450px; margin:5px 0px 0px 5px; -webkit-border-top-left-radius: 2px; -webkit-border-bottom-left-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-bottomleft: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; background:url(../images/sidebar-bg.png) repeat-y #f6f4f4; background-position:top right}
+        #slider-container h2 {margin:15px 10px 0px 10px; padding:6px 6px 18px 6px; color:#000; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
+        #slider-container ul {list-style: none; margin:-5px 10px 5px 10px; color:#000; font-size:15px; padding:0px 6px 21px 6px; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
 
-	#map_canvas {color:#37341F; float:left; margin:5px 5px 5px 0px; overflow:hidden; height:450px; width:706px}
-	
+    #map_canvas {color:#37341F; float:left; margin:5px 5px 5px 0px; overflow:hidden; height:450px; width:706px}
+    
 #footer {width:960px; margin:0px auto 0px auto; text-align:center; font-size:13px; color:#605c43; padding:40px 0px 40px 0px; overflow:hidden}
 .infowindow {text-transform:capitalize}
+.facts {
+    display: none;
+}
