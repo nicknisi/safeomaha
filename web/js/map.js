@@ -110,7 +110,7 @@ function updateHeatmap(sliderData) {
     //map.setCenter(map.getBounds().getCenter());
     var zoom = map.getZoom();
     map.setZoom(zoom + 1);
-    map.setZoom(zoom)
+    map.setZoom(zoom);
 	google.maps.event.trigger(map,'resize');
 }
 
@@ -133,11 +133,12 @@ function fetchData() {
 }
 
 function fetchEvents(lat,lng) {
-	$.getJSON(baseurl + '/node?x=' + lng + '&y=' + lat + '&radius=.1&meta=true', handleEvents(data));
+	console.log('fetchEvents called.');
+	$.getJSON(baseurl + '/node?x=' + lng + '&y=' + lat + '&radius=.1&meta=true', handleEvents);
 	}
 
 function handleEvents(data) {
-	infowindow.setContent('test');
+	infowindow.setContent(data.toString());
 }
 
 // define images for different types of data (http://jg.org/mapping/icons.html)
