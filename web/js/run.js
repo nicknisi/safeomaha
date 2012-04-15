@@ -7,10 +7,15 @@ require({
     ],
     cache : {}
 }, [
-    'dojo/on',
-    'dojo/dom',
-    'dijit/layout/AccordionContainer',
-    'dijit/layout/ContentPane',
     'dojo/domReady!'
-], function (on, dom, Button, AccordionContainer, ContentPane) {
+], function () {
+    $('#crime-toggler').bind('click', function () {
+        $('#crime-facts').toggle('slow');
+    });
+    $('#cops-toggler').bind('click', function () {
+        $('#cops-facts').toggle('slow');
+    });
+    $('#accidents-toggler').bind('click', function () {
+        $('#accidents-facts').toggle('slow');
+    });
 });

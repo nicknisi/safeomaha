@@ -164,11 +164,18 @@ function fetchData() {
 
 function fetchEvents(lat,lng) {
 	console.log('fetchEvents called.');
-	$.getJSON(baseurl + '/node?x=' + lng + '&y=' + lat + '&radius=.1&meta=true', handleEvents);
+	$.getJSON(baseurl + '/node/CRIME?x=' + lng + '&y=' + lat + '&radius=25&meta=true', handleEvents);
 	}
 
 function handleEvents(data) {
-	infowindow.setContent();
+	console.log(data.items);
+	console.log('handleEvents called. Data length is ' + data.items.length);
+	var html = '';
+	for (var i = 0; i < data.items.length; i++) {
+		html += '<h2>' + data.items[i].type + '</h2>';
+	}
+
+	infowindow.setContent(html);
 }
 
 // define images for different types of data (http://jg.org/mapping/icons.html)
