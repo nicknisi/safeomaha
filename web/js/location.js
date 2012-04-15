@@ -1,20 +1,51 @@
 var myLocationMarker;
 
+var locationTimer;
+var locationWait = 900; // interval of inactivity until location updates automatically
+var locationAutoMinChars = 4; // min chars needed to set auto commit timer for location in map
+
+var ratingChangeTimer;
+var ratingChangeWait = 500; // interval of inactivity after changing a rating range slider before committing update
+
 function onLocationKeyPress(event)
 {	
 	var charCode = event.charCode;
+	var locationValue = getLocationValue();
+	
+	// cancel timer
+	if (locationTimer)
+	{
+		clearTimeout(locationTimer);
+	}
 	
 	if (charCode == 13)
 	{
-		// cancel timer
-		updateLocation($("#locationInput").val());
+		updateLocation(locationValue);
 	}
-	else
+	else if (locationValue.length > locationAutoMinChars)
 	{
 		// set timer
+		locationTimer = setTimeout("locationTimeoutHandler()", locationWait);
 		console.info(String.fromCharCode(charCode).toUpperCase());
 	}
 }
+
+
+
+function getLocationValue()
+{
+	return $("#locationInput").val();
+}
+
+
+
+function locationTimeoutHandler()
+{
+	console.info("Automatically updating location based on new location");
+	updateLocation(getLocationValue());
+}
+
+
 
 function updateLocation(location)
 {
@@ -27,6 +58,8 @@ function updateLocation(location)
 	
 	geocoder.geocode(requestData, geocodeResultHandler);
 }
+
+
 
 function geocodeResultHandler(r, status)
 {
@@ -43,5 +76,36 @@ function geocodeResultHandler(r, status)
 		
 		myLocationMarker.setPosition(coordinate);
 		map.setCenter(coordinate);
+	}
+}
+
+
+
+function onRatingChange(event, ratingType)
+{
+	ratingValue = event.currentTarget.value;
+	console.info(ratingType + " rating changed to " + ratingValue);
+	
+	if (ratingChangeTimer)
+	{
+		clearTimeout(ratingChangeTimer);
+	}
+	
+	var method = "updateRating(\"" + ratingType + "\"," + ratingValue + ")";
+	ratingChangeTimer = setTimeout(method, ratingChangeWait);
+}
+
+function updateRating(ratingType, ratingValue)
+{
+	console.info("Updating " + ratingType + " rating value: " + ratingValue);
+	
+	if (ratingType == "crime")
+	{
+	}
+	else if (ratingType == "police")
+	{
+	}
+	else if (ratingType == "accidents")
+	{
 	}
 }
