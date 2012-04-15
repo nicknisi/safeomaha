@@ -97,9 +97,16 @@ class Tile(object):
         # Calculate some things.
         # ======================
 
-        dotSize = zoom - 11 if zoom >= 11 else 0;
-        dot = dots[dotSize]
 
+        dotSize = zoom - 13 if zoom >= 13 else 0
+        maxSize = max(crime,accident, cops)
+        dotSize = 30 - maxSize if dotSize + maxSize > 30 else dotSize
+
+        crimeDot = dots[dotSize + crime]
+        accidentDot = dots[dotSize + accident]
+        copsDot = dots[dotSize + cops]
+
+        maxDot = dots[dotSize + maxSize]
 
         # Translate tile to pixel coords.
         # -------------------------------
@@ -113,12 +120,11 @@ class Tile(object):
         # Expand bounds by one-half dot width.
         # ------------------------------------
     
-        x1 = x1 - dot.half_size
-        x2 = x2 + dot.half_size
-        y1 = y1 - dot.half_size
-        y2 = y2 + dot.half_size
+        x1 = x1 - maxDot.half_size
+        x2 = x2 + maxDot.half_size
+        y1 = y1 - maxDot.half_size
+        y2 = y2 + maxDot.half_size
         expanded_size = (x2-x1, y2-y1)
-    
     
         # Translate new pixel bounds to lat/lng.
         # --------------------------------------
@@ -126,12 +132,20 @@ class Tile(object):
         n, w = gmerc.px2ll(x1, y1, zoom)
         s, e = gmerc.px2ll(x2, y2, zoom)
 
-
         # Save
         # ====
 
-        self.dot = dot.img
-        self.pad = dot.half_size
+        self.dot = {
+                'ACCIDENT' : accidentDot.img,
+                'CRIME' : crimeDot.img
+                }
+
+        self.pad = {
+                'ACCIDENT' : accidentDot.half_size,
+                'CRIME' : crimeDot.half_size
+                }
+
+        self.maxPad = maxDot.half_size
 
         self.x = x
         self.y = y
@@ -149,7 +163,6 @@ class Tile(object):
         self.opacity = gheat.opacity.zoom_to_opacity[zoom]
         self.color_scheme = color_scheme
         self.mapname = mapname
-  
 
     def is_empty(self):
         """With attributes set on self, return a boolean.
@@ -159,10 +172,17 @@ class Tile(object):
 
         """
         db = gheat.get_cursor()
-        query = {"mapname":self.mapname,
-                           "lat":{"$lte":self.llbound[0],"$gte":self.llbound[1]},
-                           "lng":{"$lte":self.llbound[2],"$gte":self.llbound[3]}}
-        numpoints = db.find(query).count()
+        query = {
+                    "loc" : {
+                        "$within" : { "$box" : [
+                                [ self.llbound[3], self.llbound[1] ],
+                                [ self.llbound[2], self.llbound[0] ]
+                            ]}
+                    }
+                }
+        
+        numpoints = db.find(query, { "meta" : 0 }).count()
+
         return numpoints == 0
 
 
@@ -176,18 +196,27 @@ class Tile(object):
         # to be included on this tile, relative to the top-left of the tile.
 
         db = gheat.get_cursor()
-        query = {"mapname":self.mapname,
-                           "lat":{"$lte":self.llbound[0],"$gte":self.llbound[1]},
-                           "lng":{"$lte":self.llbound[2],"$gte":self.llbound[3]}}
-        _points = db.find(query)
+        query = {
+                    "loc" : {
+                        "$within" : {"$box": [
+                            [ self.llbound[3], self.llbound[1] ],
+                            [ self.llbound[2], self.llbound[0] ]
+                        ]}
+                    }
+                }
+        _points = db.find(query, {"meta" : 0})
         def points():
             """Yield x,y pixel coords within this tile, top-left of dot.
             """
             for point in _points:
-                x, y = gmerc.ll2px(point['lat'], point['lng'], self.zoom)
+                x, y = gmerc.ll2px(point['loc'][1], point['loc'][0], self.zoom)
                 x = x - self.x1 # account for tile offset relative to 
                 y = y - self.y1 #  overall map
-                yield x-self.pad,y-self.pad
+                if point["type"] in self.pad:
+                    yield { 
+                        "loc" : [x-self.pad[point["type"]], y-self.pad[point["type"]]],
+                        "category" : point["type"]
+                    }
 
 
         # Main logic

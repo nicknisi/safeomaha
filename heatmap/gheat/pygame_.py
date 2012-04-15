@@ -78,12 +78,12 @@ class Tile(base.Tile):
        
     def _add_points(self, tile, points):
         for dest in points:
-            tile.blit(self.dot, dest, None, pygame.BLEND_MULT)
+            tile.blit(self.dot[dest["category"]], dest["loc"], None, pygame.BLEND_MULT)
         return tile
 
 
     def _trim(self, tile):
-        tile = tile.subsurface(self.pad, self.pad, SIZE, SIZE).copy()
+        tile = tile.subsurface(self.maxPad, self.maxPad, SIZE, SIZE).copy()
         #@ pygame.transform.chop says this or blit; this is plenty fast 
         return tile
 

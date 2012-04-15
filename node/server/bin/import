@@ -38,8 +38,8 @@ var importData = function (fileName) {
     var ret = new comb.Promise();
     multi.drop(function (bar) {
         connect().then(function () {
-            console.log("Importing " + l + " items")
-            SafeItem.collection.drop(function (err) {
+            console.log("Importing " + l + " items");
+//            SafeItem.collection.drop(function (err) {
                 (function loop(i) {
                     try {
                         if (i >= l) {
@@ -66,10 +66,10 @@ var importData = function (fileName) {
                             }
                         }
                     } catch (e) {
-                        errorHandler(err);
+//                        errorHandler(err);
                     }
                 })(0);
-            });
+//            });
         }, comb.hitch(ret, "errback"));
     });
     return ret;
