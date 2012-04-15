@@ -86,14 +86,15 @@ function updateStats()
 		// ol
 		
 		var i = 0;
-		var crimes = data.topCrimes;
-		var officers = data.topOfficers;
+		var crimes = data.topCrimes.items;
+		var officers = data.topOfficers.items;
 		
 		var topCrimesContent = "<ol>";
 		for (i = 0; i < crimes.length; i++)
 		{
 			var crimeData = crimes[i];
 			topCrimesContent += "<li>" + crimeData.crime + ": " + crimeData.count + "</li>";
+			console.log(topCrimesContent);
 		}
 		topCrimesContent += "</ol>";
 		
@@ -102,6 +103,7 @@ function updateStats()
 		{
 			var officerData = officers[i];
 			topOfficersContent += "<li>Badge #" + officerData.officer + ": " + officerData.count + "</li>";
+			console.log(topOfficersContent);
 		}
 		topOfficersContent += "</ol>";
 		
