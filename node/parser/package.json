@@ -1,0 +1,26 @@
+{
+    "name":"safeomaha-parser",
+    "description":"Safe omaha node server",
+    "version":"0.0.1",
+    "repository":{
+        "type":"git",
+        "url":"git@github.com:nicknisi/safeomaha"
+    },
+    "dependencies":{
+        "comb":">=0.1.0",
+        "csv":">=2.5.9",
+        "request":">=2.9.153"
+    },
+    "homepage":"https://github.com/nicknisi/safeomaha",
+    "author":"Doug Martin",
+    "main":"index.js",
+    "bin":{
+        "import":"./bin/import"
+    },
+    "directories":{
+        "lib":"lib"
+    },
+    "engines":{
+        "node":">= 0.6.1"
+    }
+}

@@ -34,7 +34,7 @@ The root page (/)
 
 sub index :Path :Args(0) {
    my ( $self, $c ) = @_;
-   $self->add_points_js($c);
+   $c->stash->{foursquare}->{checkins} = $json;
 }
 
 =head2 default
@@ -57,53 +57,6 @@ Attempt to render a view, if needed.
 
 sub end : ActionClass('RenderView') {}
 
-sub add_points_js :Private {
-   my ($self, $c) = @_;
-   my @items = @{$json->{response}->{checkins}->{items}};
-   my $item_cnt = @items;
-
-   my $points_js = <<EOT;
-      var markers = new Array();
-      for (var i = 0; i < $item_cnt; i++) {
-EOT
-   foreach my $item (@{$json->{response}->{checkins}->{items}}) {
-      my $name = $item->{venue}->{name};
-      $name =~ s/'/\\'/g;
-      my $lat =  $item->{venue}->{location}->{lat};
-      my $lng =  $item->{venue}->{location}->{lng};
-      $points_js .= <<EOT;
-         markers[i] = new google.maps.Marker({
-            position: new google.maps.LatLng($lat, $lng),
-            title:    '$name',
-            content:  '$name',
-            map:      map
-         });
-         google.maps.event.addListener(markers[i], 'click', (function(marker) {
-            return function () {
-               infowindow.setContent('$name');
-               infowindow.open(map, marker);
-            };
-         })(markers[i]));
-EOT
-   }
-   $points_js .= <<EOT;
-       }
-EOT
-   $c->stash(points_js => $points_js);
-}
-
-
-
-=head1 AUTHOR
-
-Jay Hannah,,,
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
 
 __PACKAGE__->meta->make_immutable;
 

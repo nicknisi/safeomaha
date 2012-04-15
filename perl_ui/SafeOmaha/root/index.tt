@@ -17,13 +17,35 @@
         var markers = new Array();
 
         //map.setCenter(new GLatLng(41.252363, -95.997988), 13);
-        [% c.stash.points_js %]
+        [% FOREACH item IN foursquare.checkins.response.checkins.items %]
+           [% name = item.venue.name %]
+           [%# CALL name.replace('\'', '\\'') %]
+           [% lat = item.venue.location.lat %]
+           [% lng = item.venue.location.lng %]
+           marker = new google.maps.Marker({
+              position: new google.maps.LatLng([% lat %], [% lng %]),
+              title:    '[% name | json_string %]',
+              map:      map
+           });
+           google.maps.event.addListener(marker, 'click', (function(marker) {
+              return function () {
+                 infowindow.setContent('[% name | json_string %]');
+                 infowindow.open(map, marker);
+              };
+           })(marker));
+        [% END %]
     }
 
     </script>
   </head>
+  [% client_id =    'MFHWM4ODQS5CMN5FQLP5JKTBYXLC50EZCUCL5Y3XBVQRFCIQ' %]
+  [% callback_url = 'http://safeomaha.org/oauth2' %]
   <body onload="initialize()">
      <a href="https://foursquare.com/deafferret">https://foursquare.com/deafferret</a>
-     <div id="map_canvas" style="width:1000px;height:700px;"></div>
+     <a href="https://foursquare.com/oauth2/authenticate?client_id=[% client_id %]&response_type=token&redirect_uri=[% callback_url %]">Link your Foursquare</a>
+     <div id="map_canvas" style="width:1000px;height:400px;"></div>
   </body>
 </html>
+
+
+

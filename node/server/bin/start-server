@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var app = require("../lib/app.js"),
+    config = require("../config.js");
+
+
+var args = process.argv;
+if (args.length == 4) {
+    app.startServer(args[2], args[3]);
+}else{
+    app.startServer(config.HOST, config.PORT);
+}
