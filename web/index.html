@@ -11,7 +11,7 @@
         <script data-dojo-config="async:1,tmlSiblingsOfDojo:0,isDebug:1" src="js/dojo/dojo/dojo.js"></script>
         <script src="js/run.js"></script>
         <script type="text/javascript" src="./js/map.js"></script>
-		<script type="text/javascript" src="./js/location.js"></script>
+        <script type="text/javascript" src="./js/location.js"></script>
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <style type="text/css">
@@ -50,36 +50,46 @@
               <p>If anything, it’s interesting to compare how favorable different areas in Omaha are towards your family, lifestyle, and other activies.</p>
             </div>
           </div>
-		  
-		  <div id="content-container">
-	          <div id="navbar"><!--Begin navbar-->
-	            <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
-	            <div id="divider"></div>
-	            <h3>Personalize the map based on your tolerance and sensitivity to our risk categories.</h3>
-	          </div><!--End navbar-->
-			  
-			  <div id="controls">
-			  	  <div id="slider-container">
-			  	  	  <h2>Sensitivity Rating</h2>
-					  <ul>
-					  	<li>
-					  		<h4>Crime</h4>
-							<input type="range" id="crimeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'crime')" />
-						</li>
-						<li>
-							<h4>Cops</h4>
-							<input type="range" id="policeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'police')" />
-						</li>
-						<li>
-							<h4>Accidents</h4>
-							<input type="range" id="accidentSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
-						</li>
-					  </ul>
-			  	  </div>
-				  
-				  <div id="map_canvas" style="height:450px; width:716px;"></div>
-				  <div style="clear: both;" />
-			  </div>
-		  </div>
+          <div id="content-container">
+              <div id="navbar"><!--Begin navbar-->
+                <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
+                <div id="divider"></div>
+                <h3>Personalize the map based on your tolerance and sensitivity to our risk categories.</h3>
+              </div><!--End navbar-->
+
+              <div id="controls">
+                  <div id="slider-container">
+                      <h2>Sensitivity Rating</h2>
+                      <ul>
+                        <li>
+                            <h4>Crime</h4>
+                            <input type="range" id="crimeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'crime')" />
+                        </li>
+                        <li>
+                            <h4>Cops</h4>
+                            <input type="range" id="policeSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'police')" />
+                        </li>
+                        <li>
+                            <h4>Accidents</h4>
+                            <input type="range" id="accidentSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
+                        </li>
+                      </ul>
+                  </div>
+
+                  <div id="map_canvas" style="height:450px; width:716px;"></div>
+                  <div style="clear: both;" />
+              </div>
+          </div>
+        <!--<script type="text/javascript">-->
+          <!--var _gaq = _gaq || [];-->
+          <!--_gaq.push(['_setAccount', 'UA-30892895-1']);-->
+          <!--_gaq.push(['_trackPageview']);-->
+
+          <!--(function() {-->
+            <!--var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;-->
+            <!--ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';-->
+            <!--var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);-->
+          <!--})();-->
+        <!--</script>-->
     </body>
 </html>
