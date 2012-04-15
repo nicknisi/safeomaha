@@ -55,6 +55,8 @@ function initialize() {
 	// load data
 	
 	//fetchData();
+        
+        map_foursquare_points();
 
 }
 

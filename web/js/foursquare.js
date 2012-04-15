@@ -5,7 +5,7 @@ function map_foursquare_points() {
    }
    console.debug('Your access_token is ' + readCookie('access_token'));
    access_token = readCookie('access_token');
-   if (access_token == undef) {
+   if ("undefined" === typeof access_token) {
       return; 
    }
 
@@ -15,10 +15,13 @@ function map_foursquare_points() {
       dataType: 'json',
       success: function (data, textStatus, jqXHR) {
          console.debug('success! ' + textStatus + ' ' + data.response.checkins.count);
-         map_points(data.response.checkins.items);
+         map_foursquare_points_yes_really(data.response.checkins.items);
       }
    });
+}
 
+
+function map_foursquare_points_yes_really(items) {
    var markers = new Array();
    for (var i in items) {
       (function(){
