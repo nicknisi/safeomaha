@@ -5,7 +5,7 @@ function map_foursquare_points() {
    }
    console.debug('Your access_token is ' + readCookie('access_token'));
    access_token = readCookie('access_token');
-   if ("undefined" === typeof access_token) {
+   if (!access_token) {
       return; 
    }
 

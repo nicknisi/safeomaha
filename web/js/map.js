@@ -80,23 +80,27 @@ function updateStats()
 	var maxY = bounds.getNorthEast().lat(); // maxY = NE y
 	
 	var urlParams = "minX=" + minX + "&minY=" + minY + "&maxX=" + maxX + "&maxY=" + maxY;
-	$.getJSON(baseurl + '/node/STATS?' + urlParams, function(data) {
+	$.getJSON(baseurl + '/node/stats?' + urlParams, function(data) {
 		//crime-facts
 		//cops-facts
 		// ol
+		
+		var i = 0;
 		var crimes = data.topCrimes;
 		var officers = data.topOfficers;
 		
 		var topCrimesContent = "<ol>";
-		for (var crimeData in crimes)
+		for (i = 0; i < crimes.length; i++)
 		{
+			var crimeData = crimes[i];
 			topCrimesContent += "<li>" + crimeData.crime + ": " + crimeData.count + "</li>";
 		}
 		topCrimesContent += "</ol>";
 		
 		var topOfficersContent = "<ol>";
-		for (var officerData in officers)
+		for (i = 0; i < officers.length; i++)
 		{
+			var officerData = officers[i];
 			topOfficersContent += "<li>Badge #" + officerData.officer + ": " + officerData.count + "</li>";
 		}
 		topOfficersContent += "</ol>";
