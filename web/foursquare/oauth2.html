@@ -1,7 +1,8 @@
 <html>                                                                  
 <head>                                                                  
-<script type="text/javascript" src="/js/jquery.js"></script>          
-<script type="text/javascript">                                         
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
+<script type="text/javascript"> 
 $(document).ready(function() {
    // $("a").click(function() {
    var access_token = window.location.hash.split('=')[1];
@@ -22,11 +23,32 @@ $(document).ready(function() {
  
 
 function map_points(items) {
+   var myOptions = {
+      center: new google.maps.LatLng(41.25917,-96.06),
+      zoom: 11,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+   };
+   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+   var infowindow = new google.maps.InfoWindow();
+   var markers = new Array();
+
    for (var i in items) {
-      var name = items[i].venue.name;
-      var lat =  items[i].venue.location.lat;
-      var lng =  items[i].venue.location.lng;
-      console.debug(name + ' ' + lat + ' ' + lng);
+      (function(){
+         var name = items[i].venue.name;
+         var lat =  items[i].venue.location.lat;
+         var lng =  items[i].venue.location.lng;
+         console.debug(name + ' ' + lat + ' ' + lng);
+
+         var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
+            title:    name,
+            map:      map
+         });
+         google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent(name);
+            infowindow.open(map, marker);
+         });
+      })();
    }
 }
 
@@ -63,7 +85,7 @@ function eraseCookie(name) {
 <body>                                
    <a href="https://foursquare.com/oauth2/authenticate?client_id=MFHWM4ODQS5CMN5FQLP5JKTBYXLC50EZCUCL5Y3XBVQRFCIQ&response_type=token&redirect_uri=http://safeomaha.org/foursquare/oauth2.html">Link your Foursquare</a>
 
-   
+<div id="map_canvas" style="width:1000px;height:400px;"></div>
 
 </body>                                                                 
 </html>
