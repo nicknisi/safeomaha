@@ -9,10 +9,10 @@ require({
 }, [
     'dojo/domReady!'
 ], function () {
-    $('#crime-toggler').bind('click', function () {
+    $('#crime-toggler').css({ cursor:'pointer',textDecoration:'underline' }).bind('click', function () {
         $('#crime-facts').toggle('slow');
     });
-    $('#cops-toggler').bind('click', function () {
+    $('#cops-toggler').css({ cursor:'pointer',textDecoration:'underline' }).bind('click', function () {
         $('#cops-facts').toggle('slow');
     });
     $('#accidents-toggler').bind('click', function () {
