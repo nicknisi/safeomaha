@@ -95,25 +95,17 @@ function onRatingChange(event, ratingType)
 	ratingChangeTimer = setTimeout(method, ratingChangeWait);
 }
 
-function updateRating(ratingType, ratingValue)
-{
-	console.info("Updating " + ratingType + " rating value: " + ratingValue);
+function getSliderData() {
 	
-	var sliderData = {
+	return {
 		"crimeSlider": $('#crimeSlider').val(),
 		"policeSlider": $('#policeSlider').val(),
 		"accidentSlider": $('#accidentSlider').val()
-	};
+		};
+}
 
-	updateHeatmap( sliderData );
-	
-	if (ratingType == "crime")
-	{
-	}
-	else if (ratingType == "police")
-	{
-	}
-	else if (ratingType == "accidents")
-	{
-	}
+function updateRating(ratingType, ratingValue)
+{
+	console.info("Updating " + ratingType + " rating value: " + ratingValue);
+	updateHeatmap( getSliderData() );
 }

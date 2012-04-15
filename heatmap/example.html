@@ -19,9 +19,9 @@
         heatmap = new GTileLayer(copyrights, 10, 0);
         heatmap.getTileUrl = function (tile, zoom) {
             base = '/heatmap';
-            map_name = 'goodCrime';
+            map_name = 'safeomaha';
             color_scheme = 'classic';
-            url = base +'/'+ map_name +'/2/2/2/'+ color_scheme +'/'+ zoom +'/'
+            url = base +'/'+ map_name +'/1/2/4/'+ color_scheme +'/'+ zoom +'/'
             url += tile.x +','+ tile.y +'.png';
             return url;
         }
