@@ -8,7 +8,18 @@ use base 'Catalyst::View::TT';
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
     render_die => 1,
+    FILTERS => {
+       json_string => \&json_string,
+    },
 );
+
+
+sub json_string {
+   my ($in) = @_;
+   $in =~ s/'/\\'/g;
+   return $in;
+}
+
 
 =head1 NAME
 

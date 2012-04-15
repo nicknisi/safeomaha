@@ -19,17 +19,17 @@
         //map.setCenter(new GLatLng(41.252363, -95.997988), 13);
         [% FOREACH item IN foursquare.checkins.response.checkins.items %]
            [% name = item.venue.name %]
-           [% CALL name.replace('\'', '\\'') %]
+           [%# CALL name.replace('\'', '\\'') %]
            [% lat = item.venue.location.lat %]
            [% lng = item.venue.location.lng %]
            marker = new google.maps.Marker({
               position: new google.maps.LatLng([% lat %], [% lng %]),
-              title:    '[% name %]',
+              title:    '[% name | json_string %]',
               map:      map
            });
            google.maps.event.addListener(marker, 'click', (function(marker) {
               return function () {
-                 infowindow.setContent('[% name %]');
+                 infowindow.setContent('[% name | json_string %]');
                  infowindow.open(map, marker);
               };
            })(marker));
