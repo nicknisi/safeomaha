@@ -16,11 +16,6 @@
         <script type="text/javascript" src="./js/foursquare.js"></script>
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-        <style type="text/css">
-          html { height: 100% }
-          body { height: 100%; margin: 0; padding: 0 }
-          #map_canvas { height: 100% }
-        </style>
 
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDnVDrLNVrXeYMO751qyzSzxH1tEk8pjVM&sensor=true">
@@ -56,12 +51,12 @@
               <div id="navbar"><!--Begin navbar-->
                 <input id="locationInput" type="text" placeholder="Location" onKeyPress="onLocationKeyPress(event);" />
                 <div id="divider"></div>
-                <h3>Personalize the map based on your tolerance and sensitivity to our risk categories.</h3>
+                <div id="foursquare"></div>
               </div><!--End navbar-->
 
               <div id="controls">
                   <div id="slider-container">
-                      <h2>Sensitivity Rating</h2>
+                      <h2><strong>Personalize the map</strong> Based on your tolerance and sensitivity to our risk categories</h2>
                       <ul>
                         <li>
                             <h4>Crime</h4>
@@ -76,12 +71,13 @@
                             <input type="range" id="accidentSlider" min="0" max="4" step="1" value="2" onChange="onRatingChange(event,'accidents')" />
                         </li>
                       </ul>
-                      <div id="facts-widget"></div>
                   </div>
 
-                  <div id="map_canvas" style="height:450px; width:716px;"></div>
-                  <div style="clear: both;" />
+                  <div id="map_canvas"></div>
               </div>
+          </div>
+          <div id="footer">
+              &copy; Safe Omaha | Built at <a href="http://hackomaha.com" target="_blank">Hack Omaha 2012</a>
           </div>
         <!--<script type="text/javascript">-->
           <!--var _gaq = _gaq || [];-->
