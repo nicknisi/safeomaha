@@ -8,11 +8,11 @@ var connected = false;
 var connect = function (cb) {
     var ret = new comb.Promise();
     if (!connected) {
+        connected = true;
         mongoose.connect(config.MONGO_URL, function (err) {
             if (err) {
                 ret.errback(err);
             } else {
-                connected = true;
                 ret.callback();
             }
         });

@@ -24,13 +24,24 @@ body {padding:0; height:100%; margin:0px auto 0px auto; background:url(../images
             #navbar #foursquare:hover {opacity:0.95}
 
     #controls {overlow:auto; background:#dcd2aa; -webkit-border-radius:4px; -moz-border-radius:4px; border-radius:4px; float:left}
-        #slider-container {float:left; vertical-align:top; width:244px;height:450px; margin:5px 0px 0px 5px; -webkit-border-top-left-radius: 2px; -webkit-border-bottom-left-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-bottomleft: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; background:url(../images/sidebar-bg.png) repeat-y #f6f4f4; background-position:top right}
+        #slider-container {float:left; vertical-align:top; width:244px;height:450px; overflow-x: auto; margin:5px 0px 0px 5px; -webkit-border-top-left-radius: 2px; -webkit-border-bottom-left-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-bottomleft: 2px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; background:url(../images/sidebar-bg.png) repeat-y #f6f4f4; background-position:top right}
         #slider-container h2 {margin:15px 10px 0px 10px; padding:6px 6px 18px 6px; color:#000; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
         #slider-container ul {list-style: none; margin:-5px 10px 5px 10px; color:#000; font-size:15px; padding:0px 6px 21px 6px; line-height:15px; font-weight:normal; background:url(../images/sidebar-divider.png) no-repeat; background-position:bottom}
 
     #map_canvas {color:#37341F; float:left; margin:5px 5px 5px 0px; overflow:hidden; height:450px; width:706px}
     
 #footer {width:960px; margin:0px auto 0px auto; text-align:center; font-size:13px; color:#605c43; padding:40px 0px 40px 0px; overflow:hidden}
+
+#crime-facts,
+#cops-facts {
+    display: block;
+    font-size: 8pt;
+    background: wheat;
+    border-radius: 9px;
+    overflow: auto;
+    max-height: 287px;
+}
+
 .infowindow {
 	text-transform:capitalize;
 	max-height: 80px;
