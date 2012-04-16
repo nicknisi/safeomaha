@@ -22,7 +22,7 @@ SafeItemSchema.statics.categories = function (type, cb) {
 
 SafeItemSchema.statics.getItems = function (opts, includeMeta, cb) {
     var q = comb.merge({}, opts);
-    opts.loc && (q.loc = { $near:opts.loc, $spherical:true, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
+    opts.loc && (q.loc = { $near:opts.loc, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
     opts.box && (q.loc = {"$within":{"$box":opts.box}});
     delete q.radius;
     delete q.box;
@@ -33,7 +33,7 @@ SafeItemSchema.statics.getItems = function (opts, includeMeta, cb) {
 
 SafeItemSchema.statics.topOfficers = function (opts, cb) {
     var q = comb.merge({}, opts);
-    opts.loc && (q.loc = { $near:opts.loc, $spherical:true, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
+    opts.loc && (q.loc = { $near:opts.loc, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
     opts.box && (q.loc = {"$within":{"$box":opts.box}});
     delete q.radius;
     delete q.box;
@@ -78,7 +78,7 @@ SafeItemSchema.statics.topOfficers = function (opts, cb) {
 
 SafeItemSchema.statics.topCrimes = function (opts, cb) {
     var q = comb.merge({}, opts);
-    opts.loc && (q.loc = { $near:opts.loc, $spherical:true, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
+    opts.loc && (q.loc = { $near:opts.loc, $maxDistance:(opts.radius || config.DEFAULT_RADIUS) / 6378 });
     opts.box && (q.loc = {"$within":{"$box":opts.box}});
     delete q.radius;
     delete q.box;
