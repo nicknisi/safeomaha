@@ -1,3 +1,4 @@
+
 [submodule "node/parser/data"]
 	path = node/parser/data
 	url = git@github.com:nicknisi/safeomaha-data.git
